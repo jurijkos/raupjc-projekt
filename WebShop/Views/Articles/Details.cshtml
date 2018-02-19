@@ -1,0 +1,94 @@
+﻿@model WebShop.Models.Article
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <script>
+        function showImage(image) {
+            var big_image = document.getElementById("my_image");
+            var name = "/img-article/".concat(image.toString().concat(".jpg"));
+            big_image.src = name; 
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <style>
+        .main {
+            margin: 20px auto;
+        }
+
+        .left {
+            width: 720px;
+            padding: 0px;
+            float: left;
+        }
+
+        .right {
+            overflow: auto;
+        }
+
+        .image {
+            width: 200px;
+            height: 112px;
+            margin-top: 20px;
+            margin-right: 5px;
+            filter: grayscale(100%);
+        }
+
+            .image:hover {
+                filter: grayscale(0%);
+                transform: scale(1.1);
+            }
+
+           
+    </style>
+  
+</head>
+
+
+<br />
+<br />
+<font size="8">@Html.DisplayFor(model => model.Manufacturer) @Html.DisplayFor(model => model.Name)</font>
+<hr />
+
+<div class="main">
+    <div class="left">
+        @{
+
+            string imgSrc = null;
+            if (Model.Images.Count > 0)
+            {
+                var base64 = Convert.ToBase64String(Model.Images.ElementAt(0).Data);
+                imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            }
+
+        }
+        <img id="my_image" src= "@imgSrc" width="720"/>
+    </div>
+    <div class="right">
+        <p style="margin-left:30px">@Html.DisplayFor(model => model.Code)</p>
+    </div>
+</div>
+<div class="noborder" style="overflow: auto; width: 730px; height: 150px;">
+    <div class="noborder" style="width: 1510px;">
+        @foreach (Image item in Model.Images)
+        {
+            var base64 = Convert.ToBase64String(item.Data);
+            string iSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            <img class="image" src="@iSrc"  onclick="showImage(@item.ImageId)"/>
+        }
+
+    </div>
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.ArticleId">Uredi</a>
+        }
+    }
+    <a asp-action="Index">Popis proizvoda</a>|
+    <a asp-controller="Baskets" asp-action="AddArticle" asp-route-articleId="@Model.ArticleId">Dodaj u kosaricu</a>
+</div>

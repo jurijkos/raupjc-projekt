@@ -1,0 +1,45 @@
+﻿@model WebShop.Models.Image
+
+@{
+    ViewData["Title"] = "Dodavanje slike";
+}
+
+<h2>Dodavanje slika</h2>
+
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Opis Slike</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data" class="control-label">Slika</label>
+                <input type="file" id="files" asp-for="Data"/>
+                <span asp-validation-for="Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionNumber" class="control-label">Redni broj slike</label>
+                <input asp-for="PositionNumber" class="form-control" />
+                <span asp-validation-for="PositionNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArticleId" class="control-label">Proizvod</label>
+                <select asp-for="ArticleId" class ="form-control" asp-items="ViewBag.ArticleId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

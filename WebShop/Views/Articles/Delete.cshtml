@@ -1,0 +1,39 @@
+﻿@model WebShop.Models.Article
+
+@{
+    ViewData["Title"] = "Brisanje proizvoda";
+}
+
+<h2>Brisanje proizvoda</h2>
+
+<h3>Jeste li sigurni da zelite izbaciti ovaj proizvod iz ponude?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Naziv
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Sifra
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt>
+            Cijena
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ArticleId" />
+        <input type="submit" value="Obrisi" class="btn btn-default" /> |
+        <a asp-action="Index">Vrati se na popis proizvoda...</a>
+    </form>
+</div>

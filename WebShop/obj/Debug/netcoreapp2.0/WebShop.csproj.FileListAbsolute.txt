@@ -1,0 +1,12 @@
+C:\Users\jurij\source\repos\WebShop\WebShop\bin\Debug\netcoreapp2.0\WebShop.deps.json
+C:\Users\jurij\source\repos\WebShop\WebShop\bin\Debug\netcoreapp2.0\WebShop.runtimeconfig.json
+C:\Users\jurij\source\repos\WebShop\WebShop\bin\Debug\netcoreapp2.0\WebShop.runtimeconfig.dev.json
+C:\Users\jurij\source\repos\WebShop\WebShop\bin\Debug\netcoreapp2.0\WebShop.dll
+C:\Users\jurij\source\repos\WebShop\WebShop\bin\Debug\netcoreapp2.0\WebShop.pdb
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.csprojResolveAssemblyReference.cache
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.csproj.CoreCompileInputs.cache
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.AssemblyInfoInputs.cache
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.AssemblyInfo.cs
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.dll
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\WebShop.pdb
+C:\Users\jurij\source\repos\WebShop\WebShop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

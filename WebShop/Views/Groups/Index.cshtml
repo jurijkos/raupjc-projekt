@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebShop.Models.Group>
+
+@{
+    ViewData["Title"] = "Grupe proizvoda";
+}
+
+<h2>Grupe proizvoda</h2>
+
+<p>
+    <a asp-action="Create">Dodaj novu grupu proizvoda</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Naziv grupe
+                </th>
+                <th>
+                    Opis grupe
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GroupId">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.GroupId">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.GroupId">Obrisi</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

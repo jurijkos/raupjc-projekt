@@ -1,0 +1,33 @@
+﻿@model WebShop.Models.Group
+
+@{
+    ViewData["Title"] = "Brisanje grupe";
+}
+
+<h2>Brisanje grupe</h2>
+
+<h3>Jeste li sigurni da zelite obrisati ovu grupu?</h3>
+<div>
+    <h4>Grupa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Naziv grupe
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Opis grupe
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GroupId" />
+        <input type="submit" value="Obrisi" class="btn btn-default" /> |
+        <a asp-action="Index">Vrati se na popis grupa...</a>
+    </form>
+</div>

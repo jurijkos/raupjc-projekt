@@ -1,0 +1,12 @@
+﻿body {
+    background-color: lightblue;
+}
+.main {
+    margin:20px auto;
+}
+
+.left {
+    width: 720px;
+    padding: 0px;
+    float: left;
+}

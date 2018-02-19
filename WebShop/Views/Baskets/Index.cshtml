@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebShop.Models.Item>
+
+@{
+    ViewData["Title"] = "Kosarica";
+}
+
+<h2>Kosarica</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Article.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Article.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Article.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<div>Ukupna cijena: @ViewBag.totalPrice</div>
+
+<a asp-action="Payment">Naruci</a>

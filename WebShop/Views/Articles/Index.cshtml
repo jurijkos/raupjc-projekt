@@ -1,0 +1,131 @@
+﻿@model PaginatedList<WebShop.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Proizvodi</h2>
+
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create">Dodaj novi proizvod</a>
+        }
+    }
+</p>
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    <select class="form-control" name="ChoseGroup" asp-items="@ViewBag.GroupId"></select>
+
+                    <br />
+                    Trazilica: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                    <br />
+                    <br />
+                    <input type="submit" value="Pronadi" class="btn btn-default" /> |
+                    <a asp-action="Index">Prikazi sve </a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table" style="border-spacing: 30px;">
+    <thead>
+        <tr>
+            <th>
+                Proizvodac
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Naziv</a>
+            </th>
+            <th>
+                Šifra
+            </th>
+            <th>
+               Tip proizvoda
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Cijena</a>
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @{
+                    string imgSrc = null;
+                    if (item.Images.Count > 0)
+                    {
+                        var base64 = Convert.ToBase64String(item.Images.ElementAt(0).Data);
+                        imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    }
+                }
+                <a asp-action="Details" asp-route-id="@item.ArticleId"><img src="@imgSrc" width="150" height="84" /></a>
+            </td>
+            <td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ArticleId">Uredi</a>
+                        <a asp-action="Delete" asp-route-id="@item.ArticleId">Obrisi</a>
+                    }
+
+                }
+
+
+                
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-currentGroup="@ViewData["CurrentGroup"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   asp-route-currentGroup="@ViewData["CurrentGroup"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

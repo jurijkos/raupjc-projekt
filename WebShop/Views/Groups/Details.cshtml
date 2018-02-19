@@ -1,0 +1,29 @@
+﻿@model WebShop.Models.Group
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Podaci o grupi proizvoda</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Naziv grupe
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Opis grupe
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.GroupId">Uredi</a> |
+    <a asp-action="Index">Vrati se na popis...</a>
+</div>
